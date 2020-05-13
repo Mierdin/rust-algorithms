@@ -13,35 +13,26 @@ fn main() {
 }
 
 fn bubble_sort(mut vec: Vec<i32>) -> Vec<i32> {
-
     loop {
-
-        // We can't change items of a vector while iterating, so let's create
-        // a copy of it first, and we'll make changes here while iterating over
-        // the immutable original
-        let mut vec_mut = vec.to_vec();
-
+        // Default to false, so we know by the end if we had any swaps,
+        // which indicates we need to do another pass
         let mut swapped = false;
-
+        
+        // Iterate over the length of vec, swapping any values that are out of order.
         let mut i = 0;
-        for _item in vec.iter() {
+        while i < vec.len() {
             if i >= vec.len()-1 { break; }
-
             if vec[i] > vec[i+1] {
                 swapped = true;
-                // println!("Swapping {} for {}", vec[i], vec[i+1]);
-
                 let value = vec[i];
-                vec_mut.remove(i);
-                vec_mut.insert(i+1, value);
+                vec.remove(i);
+                vec.insert(i+1, value);
                 break;
             }
             i += 1;
         }
 
-        vec = vec_mut;
-
-        // no swaps? Then we're sorted
+        // no swaps? Then we're sorted, and we can exit and return the final `vec`
         if !swapped { break; }
     }
 
