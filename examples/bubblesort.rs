@@ -53,7 +53,7 @@ fn random_vec(size: u32) -> Vec<i32> {
     let mut rng = rand::thread_rng();
     let mut zero_vec: Vec<i32> = Vec::with_capacity(size as usize);
     for _i in 0..size {
-        zero_vec.push(rng.gen());
+        zero_vec.push(rng.gen_range(0, 1000));
     }
     return zero_vec;
 }
